@@ -23,7 +23,7 @@ namespace proiz
         }
         public void Table()
         {
-            string sql = $"SELECT info_user FROM Auth";
+            string sql = $"SELECT id_up as 'Номер', desk_up as 'описание', data_up as 'Дата выполение', task_up as 'Выполнение', prior_up as 'Приоротет', otvest_up as 'Ответственный'  FROM upravlenie";
 
             try
             {
@@ -33,7 +33,7 @@ namespace proiz
                 IDataAdapter.Fill(dataset);
                 dataGridView1.DataSource = dataset.Tables[0];
 
-                dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                //dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
           
 
             }
