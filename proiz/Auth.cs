@@ -14,6 +14,11 @@ namespace proiz
 {
     public partial class Form1 : Form
     {
+
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+
         bool vis = true;
 
         MySqlConnection conn = new MySqlConnection(Daniel.Twenty());
@@ -76,63 +81,93 @@ namespace proiz
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Запрос в БД на предмет того, если ли строка с подходящим логином и паролем
-            string sql = "SELECT * FROM Auth WHERE login_user = @un and  password= @up";
-            //Открытие соединения
+            string sql = "SELECT * FROM Auth WHERE login_user = @un and password= @up";
             conn.Open();
-            //Объявляем таблицу
             DataTable table = new DataTable();
-            //Объявляем адаптер
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            //Объявляем команду
             MySqlCommand command = new MySqlCommand(sql, conn);
-            //Определяем параметры
             command.Parameters.Add("@un", MySqlDbType.VarChar, 25);
             command.Parameters.Add("@up", MySqlDbType.VarChar, 25);
-            //Присваиваем параметрам значение
             command.Parameters["@un"].Value = textBox1.Text;
             command.Parameters["@up"].Value = sha256(textBox2.Text);
-            //Заносим команду в адаптер
             adapter.SelectCommand = command;
-            //Заполняем таблицу
             adapter.Fill(table);
-            //Закрываем соединение
             conn.Close();
-            //Если вернулась больше 0 строк, значит такой пользователь существует
+
             if (table.Rows.Count > 0)
             {
-                //Присваеваем глобальный признак авторизации
+                DataRow userRow = table.Rows[0];
+                string role = userRow["role_user"].ToString();
+                int employeeId = Convert.ToInt32(userRow["id_user"]);
+                string username = userRow["info_user"].ToString(); // Извлекаем значение info_user
+
+                // Передаем userId и username при создании нового экземпляра Menu
+                switch (role)
+                {
+                    case "3":
+                        MenuGuest guestForm = new MenuGuest(employeeId, username);
+                        guestForm.Show();
+                        break;
+                    case "2":
+                        Menu menu = new Menu(employeeId, username);
+                        menu.Show();
+                        break;
+                    case "1":
+                        Menu Main = new Menu(employeeId, username);
+                        Main.Show();
+                        break;
+                }
                 Auth.auth = true;
-                //Достаем данные пользователя в случае успеха
                 GetUserInfo(textBox1.Text);
-                //Закрываем форму
-                Menu Main = new Menu();
-                Main.Show();
                 this.Hide();
-               
             }
             else
             {
-                //Отобразить сообщение о том, что авторизаия неуспешна
                 MessageBox.Show("Неверные данные авторизации!");
             }
-
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-             if (vis)
+            if (vis)
             {
                 textBox2.UseSystemPasswordChar = false;
                 vis = false;
+             
             }
-             else
+            else
             {
                 textBox2.UseSystemPasswordChar = true;
                 vis = true;
             }
-           
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Cursor.Position;
+            dragFormPoint = this.Location;
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(dif));
+            }
+        }
+
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
         }
     }
 }

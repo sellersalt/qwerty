@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddTime.Designer.cs">
+      <DependentUpon>AddTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Auth.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,17 +67,40 @@
     <Compile Include="Empl.Designer.cs">
       <DependentUpon>Empl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="infoclient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="infoclient.Designer.cs">
+      <DependentUpon>infoclient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuGuest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuGuest.Designer.cs">
+      <DependentUpon>MenuGuest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="notice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="notice.Designer.cs">
+      <DependentUpon>notice.cs</DependentUpon>
     </Compile>
     <Compile Include="PMS.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PMS.Designer.cs">
       <DependentUpon>PMS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Question.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Question.Designer.cs">
+      <DependentUpon>Question.cs</DependentUpon>
     </Compile>
     <Compile Include="Reg.cs">
       <SubType>Form</SubType>
@@ -87,6 +116,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="report.Designer.cs">
+      <DependentUpon>report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskClient.Designer.cs">
+      <DependentUpon>TaskClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,14 +140,29 @@
     <Compile Include="TimeT.Designer.cs">
       <DependentUpon>TimeT.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddTime.resx">
+      <DependentUpon>AddTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empl.resx">
       <DependentUpon>Empl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="infoclient.resx">
+      <DependentUpon>infoclient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuGuest.resx">
+      <DependentUpon>MenuGuest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="notice.resx">
+      <DependentUpon>notice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PMS.resx">
+      <DependentUpon>PMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Question.resx">
+      <DependentUpon>Question.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reg.resx">
       <DependentUpon>Reg.cs</DependentUpon>
@@ -116,15 +172,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="report.resx">
+      <DependentUpon>report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskClient.resx">
+      <DependentUpon>TaskClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskM.resx">
       <DependentUpon>TaskM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeT.resx">
+      <DependentUpon>TimeT.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -138,6 +199,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\idea.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

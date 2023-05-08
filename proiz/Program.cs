@@ -23,7 +23,11 @@ namespace proiz
         }
      
     }
-
+    public static class UserInfo
+    {
+        public static int CurrentEmployeeId { get; set; }
+        // можно добавить другие свойства, если нужно
+    }
     static class Auth
     {
         //Статичное поле, которое хранит значение статуса авторизации
